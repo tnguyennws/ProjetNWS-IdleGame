@@ -52,7 +52,7 @@ export default class Game extends Phaser.Scene
 
         pnj2.on('pointerdown', function () {
     
-            this.scene.start('main-screen')
+            this.scene.start('forge')
     
         }, this);
 
