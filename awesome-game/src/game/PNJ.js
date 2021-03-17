@@ -1,6 +1,6 @@
 import Phaser from '../lib/phaser.js'
 
-export default class Bomb extends Phaser.Physics.Arcade.Sprite
+export default class PNJ extends Phaser.Physics.Arcade.Sprite
 {
     /**
     * @param {Phaser.Scene} scene
@@ -13,6 +13,6 @@ export default class Bomb extends Phaser.Physics.Arcade.Sprite
     {
         super(scene, x, y, texture)
 
-        this.setScale(0.7)
+        this.setScale(1)
     }
 }

@@ -16,9 +16,9 @@ export default class Game extends Phaser.Scene
     preload()
     {
         // load the images
-        this.load.image('background', 'assets/background_village.png')
-
-        this.load.image('player', 'assets/hero-down.png')
+        this.load.image('village', 'assets/background_village.png')
+        this.load.image('player', 'assets/hero-down-tp.png')
+        this.load.image('pnj', 'assets/ghost3.png')
 
         //load the audio
 
@@ -31,16 +31,41 @@ export default class Game extends Phaser.Scene
     {
 
         // add a background image
-        this.add.image(480, 320, 'background')
+        this.add.image(200, 200, 'village')
         .setScrollFactor(1, 0)
+        .setScale(3)
+
+        var pnj1 = this.add.image(150, 200, 'pnj')
+        .setScale(1)
+
+        var pnj2 = this.add.image(630, 200, 'pnj')
+        .setScale(1)
+
+        pnj1.setInteractive();
+        pnj2.setInteractive();
+
+        pnj1.on('pointerdown', function () {
+    
+            this.scene.start('main-screen')
+    
+        }, this);
+
+        pnj2.on('pointerdown', function () {
+    
+            this.scene.start('main-screen')
+    
+        }, this);
 
         this.player = this.physics.add.sprite(240, 320, 'player')
-        .setScale(2)
+        .setScale(1.5)
+        this.player.setCollideWorldBounds(true)
         
         // set the horizontal dead zone to 1.5x game width
         this.cameras.main.setDeadzone(this.scale.width * 1)
  
     }
+
+
 
     update(t, dt)
     {
@@ -68,4 +93,5 @@ export default class Game extends Phaser.Scene
             this.player.setVelocityY(0)
         }
     }
+
 }
