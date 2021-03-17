@@ -48,9 +48,8 @@ export default class Village extends Phaser.Scene
 
     preload()
     {
-        this.load.image('space-ship', 'assets/ship1.png')
-        this.load.image('haland', 'assets/haland.jpg')
-        this.load.image('hero', 'assets/electru.jpg')
+        this.load.image('player', 'assets/hero-down.png')
+        this.load.image('background', 'assets/background_mainscreen.jpg')
 
     }
 
@@ -60,24 +59,14 @@ export default class Village extends Phaser.Scene
         // add a background image
         this.add.image(480, 320, 'background')
         .setScrollFactor(0, 0)
-        
-        this.player = this.physics.add.sprite(100, 320, 'space-ship')
-        .setScale(0.5)
 
-        this.haland = this.physics.add.sprite(700, 100, 'haland')
-        .setScale(0.5)
-
-        this.hero = this.physics.add.sprite(700, 320, 'hero')
+        this.hero = this.physics.add.sprite(700, 320, 'player')
         .setScale(0.5)
         game.physics.arcade.enable(this.hero);
 
         this.cursors = game.input.keyboard.createCursorKeys();
 
  
-    }
-    onObjectClicked()
-    {
-        this.scene.start('game-over')
     }
 
     update(t, dt)

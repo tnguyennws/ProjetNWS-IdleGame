@@ -9,7 +9,7 @@ export default class MainScreen extends Phaser.Scene
 
     preload()
     {
-        this.load.image('background', 'assets/background_mainscreen.jpg');
+        this.load.image('background', 'assets/background_mainscreen.jpg')
     }
 
     create()
@@ -34,7 +34,7 @@ export default class MainScreen extends Phaser.Scene
             .setOrigin(0.5)
 
         this.input.keyboard.once('keydown-SPACE', () => {
-            this.scene.start('game')
+            this.scene.start('village')
             })
     }
 }
