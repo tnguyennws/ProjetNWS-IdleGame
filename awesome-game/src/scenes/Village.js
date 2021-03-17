@@ -1,55 +1,29 @@
 import Phaser from '../lib/phaser.js'
 
-import Beacon from '../game/Beacon.js'
-import Bomb from '../game/Bomb.js'
-
-export default class Village extends Phaser.Scene
+export default class Game extends Phaser.Scene
 {
-
-    beaconsCollected = 0
-    healthPoint = 3
-
     /** @type {Phaser.Physics.Arcade.Sprite} */
     player
 
-    /** @type {Phaser.Physics.Arcade.StaticGroup} */
-    asteroid
-
     /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
     cursors
-
-    /** @type {Phaser.Physics.Arcade.Group} */
-    beacons
-
-    /** @type {Phaser.Physics.Arcade.Group} */
-    bombs
-
-    /**
-    * @param {Phaser.GameObjects.Sprite} sprite
-    */
-
-    /** @type {Phaser.GameObjects.Text} */
-    beaconsCollectedText
-
-    /** @type {Phaser.GameObjects.Text} */
-    healthPointText
-
-
-
+    
     constructor()
     {
         super('village')
     }
 
-    init()
-    {
-        
-    }
-
     preload()
     {
+        // load the images
+        this.load.image('background', 'assets/background_village.png')
+
         this.load.image('player', 'assets/hero-down.png')
-        this.load.image('background', 'assets/background_mainscreen.jpg')
+
+        //load the audio
+
+        // load the cursor
+        this.cursors = this.input.keyboard.createCursorKeys()
 
     }
 
@@ -58,46 +32,40 @@ export default class Village extends Phaser.Scene
 
         // add a background image
         this.add.image(480, 320, 'background')
-        .setScrollFactor(0, 0)
+        .setScrollFactor(1, 0)
 
-        this.hero = this.physics.add.sprite(700, 320, 'player')
-        .setScale(0.5)
-        game.physics.arcade.enable(this.hero);
-
-        this.cursors = game.input.keyboard.createCursorKeys();
-
+        this.player = this.physics.add.sprite(240, 320, 'player')
+        .setScale(2)
+        
+        // set the horizontal dead zone to 1.5x game width
+        this.cameras.main.setDeadzone(this.scale.width * 1)
  
     }
 
     update(t, dt)
     {
-
-        let vX = 0;
-        let vY = 0;
-
+        // left and right input logic
         if (this.cursors.left.isDown)
         {
-            vX = -200
+            this.player.setVelocityX(-200)
         }
-        if (this.cursors.right.isDown)
+        else if (this.cursors.right.isDown)
         {
-            vX = 200
+            this.player.setVelocityX(200)
         }
-        if (this.cursors.down.isDown)
+        else if (this.cursors.down.isDown)
         {
-            vY = 200
+            this.player.setVelocityY(200)
         }
-        if (this.cursors.up.isDown)
+        else if (this.cursors.up.isDown)
         {
-            vY = -200
+            this.player.setVelocityY(-200)
         }
-        
-        this.hero.setVelocityX(vX);
-        this.hero.setVelocityY(vY);
+        else
+        {
+            // stop movement if not left or right
+            this.player.setVelocityX(0)
+            this.player.setVelocityY(0)
+        }
     }
-
-
-
-
-
 }
