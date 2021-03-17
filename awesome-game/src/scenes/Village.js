@@ -1,6 +1,6 @@
 import Phaser from '../lib/phaser.js'
 
-export default class Game extends Phaser.Scene
+export default class Village extends Phaser.Scene
 {
     /** @type {Phaser.Physics.Arcade.Sprite} */
     player
