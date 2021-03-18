@@ -1,8 +1,6 @@
 import Phaser from '../lib/phaser.js'
 
-
-
-export default class Combat extends Phaser.Scene
+export default class Aventure extends Phaser.Scene
 {    
     
 
