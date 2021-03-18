@@ -10,6 +10,7 @@ export default class MainScreen extends Phaser.Scene
     preload()
     {
         this.load.image('background', 'assets/background_mainscreen.jpg')
+        this.load.image('titre', 'assets/titre.png')
     }
 
     create()
@@ -19,13 +20,17 @@ export default class MainScreen extends Phaser.Scene
 
         // add a background image
         this.add.image(480, 320, 'background')
-        .setScrollFactor(1, 0)     
+        .setScrollFactor(1, 0) 
         
-        this.add.text(width * 0.5, height * 0.3, 'Bienvenue dans Idle Blade', {
+        this.add.image(670, 200, 'titre')
+        .setScale(1.2)
+        
+        
+        /*this.add.text(width * 0.5, height * 0.3, 'Bienvenue dans Idle Blade', {
         fontSize: 32,
         color: '#000000'
         })
-        .setOrigin(0.5)
+        .setOrigin(0.5)*/
 
         this.add.text(width * 0.5, height * 0.75, 'Appuyer sur espace pour commencer à jouer !!!', {
             fontSize: 30,
