@@ -21,7 +21,7 @@ export default class MainScreen extends Phaser.Scene
         this.add.image(480, 320, 'background')
         .setScrollFactor(1, 0)     
         
-        this.add.text(width * 0.5, height * 0.3, 'Bienvenue dans Idle Blades', {
+        this.add.text(width * 0.5, height * 0.3, 'Bienvenue dans Idle Blade', {
         fontSize: 32,
         color: '#000000'
         })

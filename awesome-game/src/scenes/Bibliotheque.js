@@ -1,60 +1,24 @@
 import Phaser from '../lib/phaser.js'
 
-export default class Village extends Phaser.Scene
-{
-    /** @type {Phaser.Physics.Arcade.Sprite} */
-    player
-
-    /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
-    cursors
-    
+export default class Bibli extends Phaser.Scene
+{    
     constructor()
     {
-        super('village')
+        super('bibliotheque')
     }
 
     preload()
     {
-        // load the images
-        this.load.image('village', 'assets/background_village.png')
+        this.load.image('forge', 'assets/forge.jpg')
         this.load.image('player', 'assets/hero-down-tp.png')
-        this.load.image('pnj', 'assets/ghost3.png')
 
-        //load the audio
-
-        // load the cursor
         this.cursors = this.input.keyboard.createCursorKeys()
-
     }
 
     create()
     {
-
-        // add a background image
-        this.add.image(200, 200, 'village')
+        this.add.image(500, 200, 'forge')
         .setScrollFactor(1, 0)
-        .setScale(3)
-
-        var pnj1 = this.add.image(150, 200, 'pnj')
-        .setScale(1)
-
-        var pnj2 = this.add.image(630, 200, 'pnj')
-        .setScale(1)
-
-        pnj1.setInteractive();
-        pnj2.setInteractive();
-
-        pnj1.on('pointerdown', function () {
-    
-            this.scene.start('combat')
-    
-        }, this);
-
-        pnj2.on('pointerdown', function () {
-    
-            this.scene.start('forge')
-    
-        }, this);
 
         this.player = this.physics.add.sprite(240, 320, 'player')
         .setScale(1.5)
@@ -62,10 +26,12 @@ export default class Village extends Phaser.Scene
         
         // set the horizontal dead zone to 1.5x game width
         this.cameras.main.setDeadzone(this.scale.width * 1)
+
+        this.input.keyboard.once('keydown-SPACE', () => {
+            this.scene.start('village')
+            })
  
     }
-
-
 
     update(t, dt)
     {
@@ -92,6 +58,9 @@ export default class Village extends Phaser.Scene
             this.player.setVelocityX(0)
             this.player.setVelocityY(0)
         }
+
+
+
     }
 
 }
