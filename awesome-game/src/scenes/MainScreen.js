@@ -51,8 +51,14 @@ export default class MainScreen extends Phaser.Scene
             })
             .setOrigin(0.5)*/
 
+<<<<<<< Updated upstream
         /*this.input.keyboard.once('keydown-SPACE', () => {
             this.scene.start('village')
             })*/
+=======
+        this.input.keyboard.once('keydown-SPACE', () => {
+            this.scene.start('forge')
+            })
+>>>>>>> Stashed changes
     }
 }

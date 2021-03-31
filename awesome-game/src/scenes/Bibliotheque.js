@@ -11,7 +11,9 @@ export default class Bibli extends Phaser.Scene
     {
         this.load.image('forge', 'assets/forge.jpg')
         this.load.image('player', 'assets/hero-down-tp.png')
-
+        this.load.image('hp', 'assets/hp.png')
+        this.load.image('attack', 'assets/attack.jpg')
+        this.load.image('def', 'assets/def.jpg')
         this.cursors = this.input.keyboard.createCursorKeys()
     }
 
@@ -24,6 +26,46 @@ export default class Bibli extends Phaser.Scene
         .setScale(1.5)
         this.player.setCollideWorldBounds(true)
         
+
+        //Placement d'une image cliquable pour augmenter les hp du hero
+        var hp = this.add.image(150, 200, 'hp')
+        .setScale(1)
+
+        hp.setInteractive();
+
+        hp.on('pointerdown', function () {
+    
+            
+    
+        }, this);
+
+
+        //Placement d'une image cliquable pour augmenter l'attaque du hero
+        var attack = this.add.image(400, 200, 'attack')
+        .setScale(1)
+
+        attack.setInteractive();
+
+        
+        attack.on('pointerdown', function () {
+    
+            
+    
+        }, this);
+
+
+        //Placement d'une image cliquable pour augmenter la défense du hero
+        var def = this.add.image(650, 200, 'def')
+        .setScale(1)
+
+        def.setInteractive();
+
+        def.on('pointerdown', function () {
+    
+            
+    
+        }, this);
+
         // set the horizontal dead zone to 1.5x game width
         this.cameras.main.setDeadzone(this.scale.width * 1)
 
