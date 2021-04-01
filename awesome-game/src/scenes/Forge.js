@@ -20,7 +20,6 @@ export default class MainScreen extends Phaser.Scene
         this.add.image(500, 200, 'forge')
         .setScrollFactor(1, 0)
 
-<<<<<<< Updated upstream
         this.player = this.physics.add.sprite(240, 320, 'player')
         .setScale(1.5)
         this.player.setCollideWorldBounds(true)
@@ -31,10 +30,9 @@ export default class MainScreen extends Phaser.Scene
         this.input.keyboard.once('keydown-SPACE', () => {
             this.scene.start('village')
             })
- 
-=======
 
->>>>>>> Stashed changes
+
+
     }
 
     update(t, dt)

@@ -1,10 +1,10 @@
 import Phaser from '../lib/phaser.js'
 
-export default class MainScreen extends Phaser.Scene
+export default class Victoire extends Phaser.Scene
 {
     constructor()
     {
-        super('main-screen')
+        super('victoire')
     }
 
     preload()
