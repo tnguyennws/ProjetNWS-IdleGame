@@ -1,18 +1,16 @@
-import Phaser from '../lib/phaser.js'
+import Phaser from "../lib/phaser.js";
 
-export default class PNJ extends Phaser.Physics.Arcade.Sprite
-{
-    /**
-    * @param {Phaser.Scene} scene
-    * @param {number} x
-    * @param {number} y
-    * @param {string} texture
-    */
+export default class PNJ extends Phaser.Physics.Arcade.Sprite {
+  /**
+   * @param {Phaser.Scene} scene
+   * @param {number} x
+   * @param {number} y
+   * @param {string} texture
+   */
 
-    constructor(scene, x, y, texture)
-    {
-        super(scene, x, y, texture)
+  constructor(scene, x, y, texture) {
+    super(scene, x, y, texture);
 
-        this.setScale(1)
-    }
+    this.setScale(1);
+  }
 }
