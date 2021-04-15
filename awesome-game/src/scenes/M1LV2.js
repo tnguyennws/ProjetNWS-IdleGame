@@ -92,11 +92,6 @@ export default class lv2 extends Phaser.Scene {
     this.mob3ATK = 5;
     this.mob3DEF = 2;
     this.degat3Mob = 0;
-
-    //Gestion de données
-    this.totalWins = localStorage.getItem('wins');
-    this.totalLoses = localStorage.getItem('loses');
-    this.gold = localStorage.getItem('gold');
   }
 
   preload() {
@@ -155,8 +150,6 @@ export default class lv2 extends Phaser.Scene {
 
           //on ajoute +1 à "heroWIN"
           this.heroWIN = this.heroWIN + 1;
-          this.totalWins = localStorage.getItem('wins') + this.heroWIN;
-          localStorage.setItem('wins', this.totalWins);
           console.log("nb victoire" + this.heroWIN);
 
           this.duel1 = true;
@@ -204,7 +197,7 @@ export default class lv2 extends Phaser.Scene {
       }
     }
 
-    if (this.mechant2 === 0 && this.duel1 === true) {
+    if (this.mechant2 === 0 && this.duel1 === true && this.duel2 === false) {
       if (this.heroHP > 0) {
         this.degatHero = this.heroATK - this.Ske2DEF;
 
@@ -228,8 +221,6 @@ export default class lv2 extends Phaser.Scene {
         console.log("Ske2 a perdu");
 
         this.heroWIN = this.heroWIN + 1;
-        this.totalWins = localStorage.getItem('wins') + this.heroWIN;
-        localStorage.setItem('wins', this.totalWins);
         console.log("nb victoire" + this.heroWIN);
         this.duel2 = true;
       }
@@ -271,8 +262,6 @@ export default class lv2 extends Phaser.Scene {
           if (this.mob2HP <= 0) {
             console.log("mob2 a perdu");
             this.heroWIN = this.heroWIN + 1;
-            this.totalWins = localStorage.getItem('wins') + this.heroWIN;
-            localStorage.setItem('wins', this.totalWins);
             console.log("nb victoire" + this.heroWIN);
             this.duel2 = true;
             console.log(this.duel2);
@@ -315,10 +304,8 @@ export default class lv2 extends Phaser.Scene {
         console.log("Ske3 a perdu");
 
         this.heroWIN = this.heroWIN + 1;
-        this.totalWins = localStorage.getItem('wins') + this.heroWIN;
-        localStorage.setItem('wins', this.totalWins);
         console.log("nb victoire" + this.heroWIN);
-        this.duel2 = true;
+        this.duel3 = true;
       }
 
       if (this.heroHP <= 0) {
@@ -361,9 +348,8 @@ export default class lv2 extends Phaser.Scene {
         if (this.mob3HP <= 0) {
           console.log("mob3 a perdu");
           this.heroWIN = this.heroWIN + 1;
-          this.totalWins = localStorage.getItem('wins') + this.heroWIN;
-          localStorage.setItem('wins', this.totalWins);
           console.log("nb victoire" + this.heroWIN);
+          this.duel3 = true;
         }
 
         if (this.heroHP <= 0) {
