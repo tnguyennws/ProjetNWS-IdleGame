@@ -1,16 +1,18 @@
 import Phaser from "../lib/phaser.js";
 
-export default class lv1 extends Phaser.Scene {
+//DUEL VS 1 MOB
+
+export default class lv3 extends Phaser.Scene {
 
   constructor() {
-    super("M1LV1");
+    super("M1LV3");
   }
 
   init() {
     //duel1 est a l'état false quand un méchant sera vaincu il passera a true ce qui permet de passer au méchant suivant
-    this.nbDuel = 10;
+    this.nbDuel = 1;
 
-    this.nbDuel2 = 1;
+
 
     //heroWIN va s'incrémenter de 1 a chaque fois qu'un méchant est vaincu une fois que heroWIN aura atteint une certaine valeur on lancera la scène de victoire !
     this.heroWIN = 0;
@@ -32,7 +34,7 @@ export default class lv1 extends Phaser.Scene {
     };
     //Création de 10 monstres
     this.monsters = [];
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 1; i++){
         this.monsters[i] = {    
             mobHP: 10,
             mobATK: 5,
@@ -114,42 +116,10 @@ export default class lv1 extends Phaser.Scene {
 
   }     
   
-  while(this.endDuel === true &&  this.nbDuel2 > 0 && this.hero[0].heroHP > 0){
-    this.endDuel2 = false;
-    while(this.endDuel2 == false){
-          
-
-          this.boss[0].bossHP -= this.hero[0].heroATK - this.boss[0].bossDEF;
-          console.log("PDV du boss : " +   this.boss[0].bossHP);
-
-
-              if(this.boss[0].bossHP <= 0){
-                console.log("Le boss est mort");
-                console.log("VICTOIRE");
-
-                this.heroWIN++;
-                this.totalWins++;
-                localStorage.setItem('win', this.totalWins);
-                this.nbDuel2--;
-                this.endDuel2 = true;
-
-            }else{
-                this.hero[0].heroHP -= this.boss[0].bossATK - this.hero[0].heroDEF;
-                console.log("PDV du hero :" + this.hero[0].heroHP);
-
-                if(this.hero[0].heroHP > 0){
-                    console.log("Round suivant");
-                }else{
-                    console.log("Le héros est mort");
-                    
-                }
-            }
-
-    }
+  
 
 
 
   }
 
-}
 }

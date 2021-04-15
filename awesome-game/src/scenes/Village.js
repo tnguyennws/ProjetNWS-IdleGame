@@ -40,7 +40,7 @@ export default class Village extends Phaser.Scene {
     pnj1.on(
       "pointerdown",
       function() {
-        this.scene.start("M1LV2");
+        this.scene.start("M1LV3");
       },
       this
     );
