@@ -7,9 +7,9 @@ export default class MainScreen extends Phaser.Scene {
 
   preload() {
     this.load.image("background", "assets/background_mainscreen.jpg");
-    this.load.image("titre", "assets/titre.png");
-    this.load.image("bouton-jouer", "assets/bouton-jouer.png");
-    this.load.image("bouton-stats", "assets/bouton-statistiques.png");
+    this.load.image("titre", "assets/titles/Idle_Blade.png");
+    this.load.image("bouton-jouer", "assets/titles/Jouer.png");
+    this.load.image("bouton-stats", "assets/titles/Statistiques.png");
   }
 
   create() {
@@ -19,9 +19,9 @@ export default class MainScreen extends Phaser.Scene {
     // add a background image
     this.add.image(480, 320, "background").setScrollFactor(1, 0);
 
-    this.add.image(670, 150, "titre").setScale(1.2);
+    this.add.image(670, 150, "titre").setScale(1);
 
-    var bouton_jouer = this.add.image(670, 350, "bouton-jouer");
+    var bouton_jouer = this.add.image(670, 350, "bouton-jouer").setScale(0.7);
 
     bouton_jouer.setInteractive();
 
@@ -33,7 +33,7 @@ export default class MainScreen extends Phaser.Scene {
       this
     );
 
-    var bouton_stats = this.add.image(670, 450, "bouton-stats");
+    var bouton_stats = this.add.image(670, 450, "bouton-stats").setScale(0.7);
 
     /*this.add.text(width * 0.5, height * 0.3, 'Bienvenue dans Idle Blade', {
         fontSize: 32,
