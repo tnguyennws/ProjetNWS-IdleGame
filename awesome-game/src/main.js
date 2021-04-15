@@ -1,5 +1,4 @@
 import Phaser from "./lib/phaser.js";
-
 import Village from "./scenes/Village.js";
 import Forge from "./scenes/Forge.js";
 import MainScreen from "./scenes/MainScreen.js";
