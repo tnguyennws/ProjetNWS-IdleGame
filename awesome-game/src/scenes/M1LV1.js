@@ -64,6 +64,11 @@ export default class lv1 extends Phaser.Scene {
     this.mobATK = 5;
     this.mobDEF = 2;
     this.degatMob = 0;
+
+    //Gestion de données
+    this.totalWins = localStorage.getItem('wins');
+    this.totalLoses = localStorage.getItem('loses');
+    this.gold = localStorage.getItem('gold');
   }
 
   preload() {
@@ -122,7 +127,10 @@ export default class lv1 extends Phaser.Scene {
 
           //on ajoute +1 à "heroWIN"
           this.heroWIN++;
+          this.totalWins = localStorage.getItem('wins') + this.heroWIN;
+          localStorage.setItem('wins', this.totalWins);
           console.log(this.heroWIN);
+
           this.time.addEvent({
             delay: 5000,
             callback: () => {
@@ -166,6 +174,8 @@ export default class lv1 extends Phaser.Scene {
           if (this.mobHP <= 0) {
             console.log("mob a perdu");
             this.heroWIN++;
+            this.totalWins = localStorage.getItem('wins') + this.heroWIN;
+            localStorage.setItem('wins', this.totalWins);
             console.log(this.heroWIN);
             this.duel1 = true;
           }
