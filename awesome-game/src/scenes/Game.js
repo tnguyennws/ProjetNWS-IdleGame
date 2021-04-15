@@ -20,24 +20,17 @@ export default class MainScreen extends Phaser.Scene
 
     create()
     {
-
-
         // add a background image
         this.add.image(480, 320, 'background')
         .setScrollFactor(1, 0)    
         
-        
-        
         player = this.physics.add.image(400, 300, 'hero');
 
         cursors = this.input.keyboard.createCursorKeys();
-
-
     }
 
     update()
     {
-
         player.setVelocity(0);
 
         if (cursors.left.isDown)
@@ -57,13 +50,7 @@ export default class MainScreen extends Phaser.Scene
         {
             player.setVelocityY(300);
         }
-
         
     }
-
-
-
-
-
 
 }

@@ -3,7 +3,6 @@ import Phaser from '../lib/phaser.js'
 export default class Aventure extends Phaser.Scene
 {    
     
-
     heroHP = 15;
     heroATK = 10;
     heroDEF = 5;
@@ -86,11 +85,8 @@ export default class Aventure extends Phaser.Scene
                     },
                     loop: true
                 })
-                
-
-                
+ 
                 this.degatHero = this.heroATK - this.SkeDEF;
-                
                 
                 this.SkeHP = this.SkeHP - this.degatHero; 
  
@@ -104,18 +100,12 @@ export default class Aventure extends Phaser.Scene
                     loop: true
                 })
                 
-                
-                
             }
             
             console.log('PV du hero' ,this.heroHP);
             console.log('PV du ske' ,this.SkeHP);
             if(this.SkeHP > 0){
-           
-            
 
-                
-   
                 this.degatSke = this.SkeATK - this.heroDEF; 
                 this.heroHP = this.heroHP - this.degatSke;
                 console.log('Degat du ske' ,this.degatSke);
@@ -131,8 +121,6 @@ export default class Aventure extends Phaser.Scene
                 
 
             }   
-
-                
             
             if(this.heroHP <= 0){
                 console.log('Hero a perdu ')
