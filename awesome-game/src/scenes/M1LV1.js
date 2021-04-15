@@ -14,6 +14,7 @@ export default class lv1 extends Phaser.Scene {
     this.heroWIN = 0;
 
     //stats du héros
+    this.hero = [];
     this.hero[0] = {     
         heroHP: 15,
         heroATK: 10,
@@ -21,13 +22,14 @@ export default class lv1 extends Phaser.Scene {
     };
 
     //Création de 10 monstres
-    for(i = 0; i < 10; i++){
-        this.monstres[i] = {    
+    this.monsters = [];
+    for(let i = 0; i < 10; i++){
+        this.monsters[i] = {    
             mobHP: 10,
             mobATK: 5,
             mobDEF: 2,
         };
-    };
+    }
 
     this.nbMob = 0;
 
@@ -69,11 +71,12 @@ export default class lv1 extends Phaser.Scene {
         while(this.endDuel == false){
 
         //Le héros attaque
-        this.monsters[this.nbMob].mobHP -= damage(this.hero[0].heroATK, this.monsters[this.nbMob].mobDEF);
-        console.log("PDV du monstre :" + this.monsters[this.nbMob].mobHP);
+        this.monsters[this.nbMob].mobHP -= this.hero[0].heroATK - this.monsters[this.nbMob].mobDEF;
+        console.log("PDV du monstre " + this.nbMob + " : " + this.monsters[this.nbMob].mobHP);
 
             if(this.monsters[this.nbMob].mobHP <= 0){
                 console.log("Le monstre est mort");
+                console.log("Combat suivant");
 
                 this.heroWIN++;
                 this.totalWins++;
@@ -82,7 +85,7 @@ export default class lv1 extends Phaser.Scene {
                 this.nbDuel--;
                 this.endDuel = true;
             }else{
-                this.hero[0].heroHP -= damage(this.monsters[this.nbMob].mobATK, this.hero[0].heroDEF);
+                this.hero[0].heroHP -= this.monsters[this.nbMob].mobATK - this.hero[0].heroDEF;
                 console.log("PDV du hero :" + this.hero[0].heroHP);
 
                 if(this.hero[0].heroHP > 0){
@@ -95,10 +98,4 @@ export default class lv1 extends Phaser.Scene {
         }
     }
   }
-
-      //degat du hero va dépendre de la défense du méchant et de l'attaque du hero
-    damage(attaque, defense){
-        degats = attaque - defense;
-        return degats;
-    }
 }
