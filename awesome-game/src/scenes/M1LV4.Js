@@ -55,7 +55,9 @@ export default class lv4 extends Phaser.Scene {
     this.load.image("player", "assets/hero-down-tp.png");
     this.load.image("ghost3", "assets/ghost3.png");
     this.load.image("mob", "assets/elec.jpg");
+    this.load.image('hero', 'assets/hero-left.png');
   }
+  
 
   create() {
     //ajout du background

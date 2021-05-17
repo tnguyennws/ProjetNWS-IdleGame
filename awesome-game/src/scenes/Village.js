@@ -34,8 +34,11 @@ export default class Village extends Phaser.Scene {
 
     var pnj2 = this.add.image(630, 200, "pnj").setScale(1);
 
+    var pnj3 = this.add.image(400, 200, "pnj").setScale(1);
+
     pnj1.setInteractive();
     pnj2.setInteractive();
+    pnj3.setInteractive();
 
     pnj1.on(
       "pointerdown",
@@ -52,6 +55,15 @@ export default class Village extends Phaser.Scene {
       },
       this
     );
+
+    pnj3.on(
+      "pointerdown",
+      function() {
+        this.scene.start("listmonde");
+      },
+      this
+    );
+
 
     this.player = this.physics.add.sprite(240, 320, "player").setScale(1.5);
     this.player.setCollideWorldBounds(true);
