@@ -1,15 +1,16 @@
 import Phaser from '../lib/phaser.js'
 
-export default class ListMonde extends Phaser.Scene
+export default class ListLvM4 extends Phaser.Scene
 {    
     constructor()
     {
-        super('listmonde')
+        super('listlevelm4')
     }
 
     preload()
     {
         this.load.image('forge', 'assets/forge.jpg')
+        this.load.image('usine', 'assets/usine.jpg')
         this.load.image('player', 'assets/hero-down-tp.png')
         this.load.image('hp', 'assets/hp.png')
         this.load.image('attack', 'assets/attack.jpg')
@@ -18,12 +19,14 @@ export default class ListMonde extends Phaser.Scene
         this.load.image("feu", "assets/feu.jpg");
         this.load.image("plante", "assets/plante.jpg");
         this.load.image("glace", "assets/monstreglace.jpg");
+        this.load.image("lvrobot", "assets/lvrobot.png");
+        this.load.image("glacier", "assets/glacier.jpg");
         this.cursors = this.input.keyboard.createCursorKeys()
     }
 
     create()
     {
-        this.add.image(500, 200, 'forge')
+        this.add.image(500, 200, 'glacier')
         .setScrollFactor(1, 0)
 
         this.player = this.physics.add.sprite(240, 320, 'player')
@@ -31,51 +34,51 @@ export default class ListMonde extends Phaser.Scene
         this.player.setCollideWorldBounds(true)
         
 
-        var robot = this.add.image(400, 200, "robot").setScale(1);
+        var lvrobot = this.add.image(400, 200, "lvrobot").setScale(1);
 
-        robot.setInteractive();
+        lvrobot.setInteractive();
 
-        robot.on(
+        lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("listlevelm1");
+              this.scene.start("M4LV2");
             },
             this
         );
 
-        var feu = this.add.image(150, 200, "feu").setScale(1);
+        var lvrobot = this.add.image(150, 200, "lvrobot").setScale(1);
 
-        feu.setInteractive();
+        lvrobot.setInteractive();
 
-        feu.on(
+        lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("listlevelm2");
+              this.scene.start("M4LV1");
             },
             this
         );
 
         
-        var plante = this.add.image(650, 200, "plante").setScale(1);
+        var lvrobot = this.add.image(650, 200, "lvrobot").setScale(1);
 
-        plante.setInteractive();
+        lvrobot.setInteractive();
 
-        plante.on(
+        lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("listlevelm3");
+              this.scene.start("M4LV3");
             },
             this
         );
 
-        var glace = this.add.image(900, 200, "glace").setScale(1);
+        var lvrobot = this.add.image(900, 200, "lvrobot").setScale(1);
 
-        glace.setInteractive();
+        lvrobot.setInteractive();
 
-        glace.on(
+        lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("listlevelm4");
+              this.scene.start("M4LV4");
             },
             this
         );
