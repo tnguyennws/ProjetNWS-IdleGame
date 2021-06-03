@@ -42,7 +42,7 @@ export default class ListLvM2 extends Phaser.Scene
         lvfeu.on(
             "pointerdown",
             function() {
-              this.scene.start("M1LV1");
+              this.scene.start("M2LV2");
             },
             this
         );
@@ -54,7 +54,7 @@ export default class ListLvM2 extends Phaser.Scene
         lvfeu.on(
             "pointerdown",
             function() {
-              this.scene.start("M1LV1");
+              this.scene.start("M2LV1");
             },
             this
         );
@@ -67,7 +67,7 @@ export default class ListLvM2 extends Phaser.Scene
         lvfeu.on(
             "pointerdown",
             function() {
-              this.scene.start("M1LV1");
+              this.scene.start("M2LV3");
             },
             this
         );
@@ -79,7 +79,7 @@ export default class ListLvM2 extends Phaser.Scene
         lvfeu.on(
             "pointerdown",
             function() {
-              this.scene.start("M1LV1");
+              this.scene.start("M2LV4");
             },
             this
         );

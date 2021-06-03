@@ -23,13 +23,19 @@ import m3lv4 from "./scenes/Niveaux/monde3/M3LV4.js";
 import Victoire from "./scenes/victoire.js";
 import VictoryScreen from "./scenes/VictoryScreen.js";
 import DefeatScreen from "./scenes/DefeatScreen.js";
+import m2lv1 from "./scenes/Niveaux/monde2/M2LV1.js";
+import m2lv2 from "./scenes/Niveaux/monde2/M2LV2.js";
+import m2lv3 from "./scenes/Niveaux/monde2/M2LV3.js";
+import m2lv4 from "./scenes/Niveaux/monde2/M2LV4.js";
 
 
 export default new Phaser.Game({
   type: Phaser.AUTO,
   width: 1340,
   height: 640,
-  scene: [MainScreen, Village, Forge, Bibli, Aventure, lv1, lv2, lv3, ListMonde, ListLvM1, ListLvM2, ListLvM3 ,m4lv1 ,ListLvM4 ,m4lv2 ,m4lv3 ,m4lv4 ,m3lv1 ,m3lv2 ,m3lv3 ,m3lv4 ,Victoire ,VictoryScreen ,DefeatScreen] ,
+  scene: [MainScreen, Village, Forge, Bibli, Aventure, lv1, lv2, lv3, ListMonde, ListLvM1, ListLvM2, ListLvM3 ,m4lv1 
+    ,ListLvM4 ,m4lv2 ,m4lv3 ,m4lv4 ,m3lv1 ,m3lv2 ,m3lv3 ,m3lv4 ,Victoire ,VictoryScreen ,DefeatScreen
+  ,m2lv1 ,m2lv2 ,m2lv3 ,m2lv4] ,
   physics: {
     default: "arcade",
     arcade: {
