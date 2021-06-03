@@ -1,4 +1,4 @@
-import Phaser from "../lib/phaser.js";
+import Phaser from "../../../lib/phaser.js";
 
 export default class m4lv3 extends Phaser.Scene {
 
@@ -11,6 +11,7 @@ export default class m4lv3 extends Phaser.Scene {
     this.nbDuel = 60;
 
     this.nbDuel2 = 1;
+    this.heroMort = false;
 
     //heroWIN va s'incrémenter de 1 a chaque fois qu'un méchant est vaincu une fois que heroWIN aura atteint une certaine valeur on lancera la scène de victoire !
     this.heroWIN = 0;
@@ -80,11 +81,11 @@ export default class m4lv3 extends Phaser.Scene {
 
         
     
-              while(this.nbDuel > 0 && this.hero[0].heroHP > 0){
+              while(this.nbDuel > 0 && this.hero[0].heroHP > 0 && this.heroMort === false){
                   this.endDuel = false;
                   
 
-                  while(this.endDuel == false){
+                  while(this.endDuel == false && this.heroMort === false){
                     //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
                     var image = this.add.image(100, 100, 'hero');
                 
@@ -115,7 +116,7 @@ export default class m4lv3 extends Phaser.Scene {
                           }else{
                               console.log("Le héros est mort");
                               this.endDuel = true;
-                              
+                              this.heroMort = true;
                           }
                       }
 
@@ -125,6 +126,12 @@ export default class m4lv3 extends Phaser.Scene {
               
 
             }     
+            if (this.nbDuel === 0){
+              this.scene.start('victory-screen')
+            }
+            if(this.heroMort === true){
+              this.scene.start('defeat-screen')
+            }
             
 
 

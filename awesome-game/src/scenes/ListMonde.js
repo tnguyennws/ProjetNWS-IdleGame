@@ -38,7 +38,7 @@ export default class ListMonde extends Phaser.Scene
         robot.on(
             "pointerdown",
             function() {
-              this.scene.start("listlevelm1");
+              this.scene.start("victory-screen");
             },
             this
         );

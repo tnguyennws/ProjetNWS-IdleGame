@@ -1,4 +1,4 @@
-import Phaser from "../lib/phaser.js";
+import Phaser from "../../../lib/phaser.js";
 
 export default class lv2 extends Phaser.Scene {
   heroHP = 15;

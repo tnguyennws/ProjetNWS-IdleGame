@@ -1,10 +1,10 @@
-import Phaser from '../lib/phaser.js'
+import Phaser from '../../lib/phaser.js'
 
-export default class ListLvM4 extends Phaser.Scene
+export default class ListLvM1 extends Phaser.Scene
 {    
     constructor()
     {
-        super('listlevelm4')
+        super('listlevelm1')
     }
 
     preload()
@@ -20,13 +20,12 @@ export default class ListLvM4 extends Phaser.Scene
         this.load.image("plante", "assets/plante.jpg");
         this.load.image("glace", "assets/monstreglace.jpg");
         this.load.image("lvrobot", "assets/lvrobot.png");
-        this.load.image("glacier", "assets/glacier.jpg");
         this.cursors = this.input.keyboard.createCursorKeys()
     }
 
     create()
     {
-        this.add.image(500, 200, 'glacier')
+        this.add.image(500, 200, 'usine')
         .setScrollFactor(1, 0)
 
         this.player = this.physics.add.sprite(240, 320, 'player')
@@ -41,7 +40,7 @@ export default class ListLvM4 extends Phaser.Scene
         lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("M4LV2");
+              this.scene.start("M1LV1");
             },
             this
         );
@@ -53,7 +52,7 @@ export default class ListLvM4 extends Phaser.Scene
         lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("M4LV1");
+              this.scene.start("M1LV1");
             },
             this
         );
@@ -66,7 +65,7 @@ export default class ListLvM4 extends Phaser.Scene
         lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("M4LV3");
+              this.scene.start("M1LV1");
             },
             this
         );
@@ -78,7 +77,7 @@ export default class ListLvM4 extends Phaser.Scene
         lvrobot.on(
             "pointerdown",
             function() {
-              this.scene.start("M4LV4");
+              this.scene.start("M1LV1");
             },
             this
         );

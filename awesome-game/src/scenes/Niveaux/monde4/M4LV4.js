@@ -1,16 +1,17 @@
-import Phaser from "../lib/phaser.js";
+import Phaser from "../../../lib/phaser.js";
 
-export default class lv1 extends Phaser.Scene {
+export default class m4lv4 extends Phaser.Scene {
 
   constructor() {
-    super("M1LV1");
+    super("M4LV4");
   }
 
   init() {
     //duel1 est a l'état false quand un méchant sera vaincu il passera a true ce qui permet de passer au méchant suivant
-    this.nbDuel = 10;
+    this.nbDuel = 70;
 
     this.nbDuel2 = 1;
+    this.heroMort = false;
 
     //heroWIN va s'incrémenter de 1 a chaque fois qu'un méchant est vaincu une fois que heroWIN aura atteint une certaine valeur on lancera la scène de victoire !
     this.heroWIN = 0;
@@ -18,7 +19,7 @@ export default class lv1 extends Phaser.Scene {
     //stats du héros
     this.hero = [];
     this.hero[0] = {     
-        heroHP: 100,
+        heroHP: 170,
         heroATK: 10,
         heroDEF: 3,
     };
@@ -32,7 +33,7 @@ export default class lv1 extends Phaser.Scene {
     };
     //Création de 10 monstres
     this.monsters = [];
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 70; i++){
         this.monsters[i] = {    
             mobHP: 10,
             mobATK: 5,
@@ -56,12 +57,7 @@ export default class lv1 extends Phaser.Scene {
     this.load.image("mob", "assets/elec.jpg");
     this.load.image('hero', 'assets/hero-left.png');
   }
-  onYoyoHandler (tween, target)
-  {
-    console.log(arguments);
 
-    target.toggleFlipX().setAlpha(0.2 + Math.random());
-  }
 
   create() {
     //ajout du background
@@ -85,26 +81,15 @@ export default class lv1 extends Phaser.Scene {
 
         
     
-              while(this.nbDuel > 0 && this.hero[0].heroHP > 0){
+              while(this.nbDuel > 0 && this.hero[0].heroHP > 0 && this.heroMort === false){
                   this.endDuel = false;
                   
 
-                  while(this.endDuel == false){
+                  while(this.endDuel == false && this.heroMort === false){
                     //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
                     var image = this.add.image(100, 100, 'hero');
                 
-                    var tween = this.tweens.add({
-                        targets: image,
-                        x: 600,
-                        ease: 'Power1',
-                        duration: 3000,
-                        yoyo: true,
-                        repeat: 0,
-                        onStart: function () { console.log('onStart'); console.log(arguments); },
-                        onComplete: function () { console.log('onComplete'); console.log(arguments); },
-                        onYoyo: function () { console.log('onYoyo'); console.log(arguments); },
-                        onRepeat: function () { console.log('onRepeat'); console.log(arguments); },
-                    });
+
 
                   //Le héros attaque
                   this.monsters[this.nbMob].mobHP -= this.hero[0].heroATK - this.monsters[this.nbMob].mobDEF;
@@ -131,7 +116,8 @@ export default class lv1 extends Phaser.Scene {
                           }else{
                               console.log("Le héros est mort");
                               this.endDuel = true;
-                              
+                             
+                              this.heroMort = true;
                           }
                       }
 
@@ -142,9 +128,9 @@ export default class lv1 extends Phaser.Scene {
 
             }     
             
-            while(this.endDuel === true &&  this.nbDuel2 > 0 && this.hero[0].heroHP > 0){
+            while(this.endDuel === true &&  this.nbDuel2 > 0 && this.hero[0].heroHP > 0 && this.heroMort === false ){
               this.endDuel2 = false;
-              while(this.endDuel2 == false){
+              while(this.endDuel2 == false && this.heroMort === false){
                     
 
                     this.boss[0].bossHP -= this.hero[0].heroATK - this.boss[0].bossDEF;
@@ -169,6 +155,7 @@ export default class lv1 extends Phaser.Scene {
                               console.log("Round suivant");
                           }else{
                               console.log("Le héros est mort");
+                              this.heroMort = true;
                               
                           }
                       }
@@ -178,6 +165,13 @@ export default class lv1 extends Phaser.Scene {
 
 
             }
+            if (this.nbDuel === 0){
+              this.scene.start('victory-screen')
+            }
+            if(this.heroMort === true){
+              this.scene.start('defeat-screen')
+            }
+            
 
 
 }

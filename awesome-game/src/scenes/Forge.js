@@ -28,7 +28,7 @@ export default class MainScreen extends Phaser.Scene
         this.cameras.main.setDeadzone(this.scale.width * 1)
 
         this.input.keyboard.once('keydown-SPACE', () => {
-            this.scene.start('village')
+            this.scene.start('victoire')
             })
 
 

@@ -19,13 +19,13 @@ export default class VictoryScreen extends Phaser.Scene {
 
     this.add.image(670, 350, "victory").setScale(1);
 
-    this.add.text(width * 0.5, height * 0.5, 'Appuyer sur "Espace" pour revenir au village', {
+    this.add.text(670, 500,  'Appuyer sur "Espace" pour revenir au village', {
       fontSize: 48
       })
       .setOrigin(0.5)
 
     this.input.keyboard.once("keydown-SPACE", () => {
-      this.scene.start("main-screen");
+      this.scene.start("village");
     });
   }
 }

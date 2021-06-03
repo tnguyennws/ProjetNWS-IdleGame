@@ -1,24 +1,24 @@
-import Phaser from "../lib/phaser.js";
+import Phaser from "../../../lib/phaser.js";
 
-export default class m4lv1 extends Phaser.Scene {
+export default class m3lv4 extends Phaser.Scene {
 
   constructor() {
-    super("M4LV1");
+    super("M3LV4");
   }
 
   init() {
     //duel1 est a l'état false quand un méchant sera vaincu il passera a true ce qui permet de passer au méchant suivant
-    this.nbDuel = 40;
+    this.nbDuel = 35;
 
     this.nbDuel2 = 1;
-
+    this.heroMort = false;
     //heroWIN va s'incrémenter de 1 a chaque fois qu'un méchant est vaincu une fois que heroWIN aura atteint une certaine valeur on lancera la scène de victoire !
     this.heroWIN = 0;
 
     //stats du héros
     this.hero = [];
     this.hero[0] = {     
-        heroHP: 100,
+        heroHP: 170,
         heroATK: 10,
         heroDEF: 3,
     };
@@ -32,7 +32,7 @@ export default class m4lv1 extends Phaser.Scene {
     };
     //Création de 10 monstres
     this.monsters = [];
-    for(let i = 0; i < 40; i++){
+    for(let i = 0; i < 35; i++){
         this.monsters[i] = {    
             mobHP: 10,
             mobATK: 5,
@@ -80,11 +80,11 @@ export default class m4lv1 extends Phaser.Scene {
 
         
     
-              while(this.nbDuel > 0 && this.hero[0].heroHP > 0){
+              while(this.nbDuel > 0 && this.hero[0].heroHP > 0 && this.heroMort === false){
                   this.endDuel = false;
                   
 
-                  while(this.endDuel == false){
+                  while(this.endDuel == false && this.heroMort === false){
                     //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
                     var image = this.add.image(100, 100, 'hero');
                 
@@ -115,7 +115,7 @@ export default class m4lv1 extends Phaser.Scene {
                           }else{
                               console.log("Le héros est mort");
                               this.endDuel = true;
-                              
+                              this.heroMort = true;
                           }
                       }
 
@@ -126,7 +126,49 @@ export default class m4lv1 extends Phaser.Scene {
 
             }     
             
+            while(this.endDuel === true &&  this.nbDuel2 > 0 && this.hero[0].heroHP > 0 && this.heroMort === false){
+              this.endDuel2 = false;
+              while(this.endDuel2 == false && this.heroMort === false){
+                    
 
+                    this.boss[0].bossHP -= this.hero[0].heroATK - this.boss[0].bossDEF;
+                    console.log("PDV du boss : " +   this.boss[0].bossHP);
+
+
+                        if(this.boss[0].bossHP <= 0){
+                          console.log("Le boss est mort");
+                          console.log("VICTOIRE");
+
+                          this.heroWIN++;
+                          this.totalWins++;
+                          localStorage.setItem('win', this.totalWins);
+                          this.nbDuel2--;
+                          this.endDuel2 = true;
+
+                      }else{
+                          this.hero[0].heroHP -= this.boss[0].bossATK - this.hero[0].heroDEF;
+                          console.log("PDV du hero :" + this.hero[0].heroHP);
+
+                          if(this.hero[0].heroHP > 0){
+                              console.log("Round suivant");
+                          }else{
+                              console.log("Le héros est mort");
+                              this.heroMort = true;
+                          }
+                      }
+
+              }
+
+
+
+            }
+            if (this.nbDuel === 0){
+              this.scene.start('victory-screen')
+            }
+            if(this.heroMort === true){
+              this.scene.start('defeat-screen')
+            }
+            
 
 
 }
