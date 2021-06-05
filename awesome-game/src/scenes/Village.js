@@ -11,11 +11,70 @@ export default class Village extends Phaser.Scene {
     super("village");
   }
 
+    // --------------- GESTION DES DONNEES --------------------
+    //Fonction de sauvegarde dans le local storage
+    saveFile(){
+      var file = {
+        vie: this.vie,
+        atk: this.atk,
+        def: this.def,
+        niveau: this.niveau,
+        or: this.or,
+        exp: this.exp,
+        arme: this.arme,
+        armure: this.armure,
+        win: this.win
+      };
+      console.log("Fichier enregistré");
+      localStorage.setItem('saveFile',JSON.stringify(file));
+  };
+
+  //Fonction de chargement depuis le local storage
+  loadFile(){
+      var file = JSON.parse(localStorage.getItem('saveFile'));
+      this.vie = file.vie;
+      this.atk = file.atk;
+      this.def = file.def;
+      this.niveau = file.niveau;
+      this.or = file.or;
+      this.exp = file.exp;
+      this.arme = file.arme;
+      this.armure = file.armure;
+      this.win = file.win
+  };
+
+  //----------------- INIT ----------------
+  init()
+  {
+      this.vie = 100;
+      this.atk = 10;
+      this.def = 3;
+      this.niveau = 1;
+      this.or = 0;
+      this.exp = 0;
+      this.arme = 0;
+      this.armure = 0;
+      this.win = 0;
+      
+      localStorage.setItem('vie', this.vie);
+      localStorage.setItem('atk', this.atk);
+      localStorage.setItem('def', this.def);
+      localStorage.setItem('niveau', this.niveau);
+      localStorage.setItem('or', this.or);
+      localStorage.setItem('exp', this.exp);
+      localStorage.setItem('arme', this.arme);
+      localStorage.setItem('armure', this.armure);
+      localStorage.setItem('win', this.win);
+  }
+
   preload() {
     // load the images
     this.load.image("village", "assets/background_village.png");
     this.load.image("player", "assets/hero-down-tp.png");
     this.load.image("pnj", "assets/ghost3.png");
+
+    this.load.image("sauvegarde", "assets/sauvegarde.png");
+    this.load.image("telecharger", "assets/telecharger.png");
 
     //load the audio
 
@@ -39,6 +98,36 @@ export default class Village extends Phaser.Scene {
     pnj1.setInteractive();
     pnj2.setInteractive();
     pnj3.setInteractive();
+
+    //Bouton sauvegarde
+    var sauvegarde = this.add.image(1230, 45, "sauvegarde").setScale(0.1);
+
+    sauvegarde.setInteractive();
+    sauvegarde.on(
+        "pointerdown",
+        function(){
+            if (window.confirm("Voulez vous sauvegarder ?")) {
+                this.saveFile();
+            }
+            
+        },
+        this
+    );
+
+    //Bouton chargement
+    var telecharger = this.add.image(1300, 45, "telecharger").setScale(0.1);
+
+    telecharger.setInteractive();
+    telecharger.on(
+        "pointerdown",
+        function(){                
+            if (window.confirm("Voulez vous charger la sauvegarde ?")) {
+                this.loadFile();
+            }
+            
+        },
+        this
+    );
 
     pnj1.on(
       "pointerdown",
