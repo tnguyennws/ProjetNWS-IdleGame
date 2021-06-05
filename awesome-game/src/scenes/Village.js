@@ -46,6 +46,19 @@ export default class Village extends Phaser.Scene {
   //----------------- INIT ----------------
   init()
   {
+
+    if(localStorage.getItem('exp') > 0){
+      this.vie = localStorage.getItem('vie');
+      this.atk = localStorage.getItem('atk');
+      this.def = localStorage.getItem('def');
+      this.niveau = localStorage.getItem('niveau');
+      this.or = localStorage.getItem('or');
+      this.exp = localStorage.getItem('exp');
+      this.arme = localStorage.getItem('arme');
+      this.armure = localStorage.getItem('armure');
+      this.win = localStorage.getItem('win');
+    }
+    else{
       this.vie = 100;
       this.atk = 10;
       this.def = 3;
@@ -55,7 +68,7 @@ export default class Village extends Phaser.Scene {
       this.arme = 0;
       this.armure = 0;
       this.win = 0;
-      
+
       localStorage.setItem('vie', this.vie);
       localStorage.setItem('atk', this.atk);
       localStorage.setItem('def', this.def);
@@ -65,6 +78,7 @@ export default class Village extends Phaser.Scene {
       localStorage.setItem('arme', this.arme);
       localStorage.setItem('armure', this.armure);
       localStorage.setItem('win', this.win);
+    }
   }
 
   preload() {

@@ -17,9 +17,9 @@ export default class lv4 extends Phaser.Scene {
     //stats du héros
     this.hero = [];
     this.hero[0] = {
-      heroHP: localStorage.getItem("vie"),
-      heroATK: localStorage.getItem("atk") + localStorage.getItem("arme"),
-      heroDEF: localStorage.getItem("def") + localStorage.getItem("armure"),
+      heroHP: parseInt(localStorage.getItem("vie")),
+      heroATK: parseInt(localStorage.getItem("atk")) + parseInt(localStorage.getItem("arme")),
+      heroDEF: parseInt(localStorage.getItem("def")) + parseInt(localStorage.getItem("armure")),
     };
 
     //creation du boss
@@ -45,6 +45,7 @@ export default class lv4 extends Phaser.Scene {
     this.totalWins = localStorage.getItem("wins");
     this.totalLoses = localStorage.getItem("loses");
     this.or = localStorage.getItem("or");
+    this.exp = localStorage.getItem('exp');
   }
 
   preload() {
@@ -93,9 +94,11 @@ export default class lv4 extends Phaser.Scene {
 
           this.heroWIN++;
           this.totalWins++;
+          this.or++;
+          this.exp++;
           localStorage.setItem("win", this.totalWins);
-          localStorage.setItem("or", 1 + localStorage.getItem("or"));
-          localStorage.setItem("exp", 1 + localStorage.getItem("exp"));
+          localStorage.setItem("or", this.or);
+          localStorage.setItem("exp", this.exp);
           this.nbMob++;
           this.nbDuel--;
           this.endDuel = true;
