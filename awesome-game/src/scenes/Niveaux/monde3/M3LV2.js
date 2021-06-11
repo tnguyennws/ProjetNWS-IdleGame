@@ -61,6 +61,10 @@ export default class m3lv2 extends Phaser.Scene {
     //ajout du background
     this.add.image(500, 200, "glacier").setScrollFactor(1, 0);
 
+    this.labelPV = this.add.text(20, 20, "PV: ", {font: "30px Arial", fill: "#ffff"} );
+    this.labelATK = this.add.text(20, 60, "ATK: ", {font: "30px Arial", fill: "#ffff"} );
+    this.labelDEF = this.add.text(20, 100, "DEF: ", {font: "30px Arial", fill: "#ffff"} );
+
     //ajout de l'image du hero
     this.player = this.physics.add.sprite(240, 320, "player").setScale(1.5);
     this.player.setCollideWorldBounds(true);
@@ -75,6 +79,10 @@ export default class m3lv2 extends Phaser.Scene {
   }
 
   update() {
+    this.labelPV.text = "PV :" + this.hero[0].heroHP;// affichage de l'or
+    this.labelATK.text = "ATK :" + this.hero[0].heroATK;// affichage de l'xp
+    this.labelDEF.text = "DEF :" + this.hero[0].heroDEF;// affichage du niveau
+   
     while (
       this.nbDuel > 0 &&
       this.hero[0].heroHP > 0 &&
@@ -83,8 +91,7 @@ export default class m3lv2 extends Phaser.Scene {
       this.endDuel = false;
 
       while (this.endDuel == false && this.heroMort === false) {
-        //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
-        var image = this.add.image(100, 100, "hero");
+
 
         //Le héros attaque
         this.monsters[this.nbMob].mobHP -=
@@ -126,11 +133,11 @@ export default class m3lv2 extends Phaser.Scene {
       }
     }
 
-    if (this.nbDuel === 0) {
+    /*if (this.nbDuel === 0) {
       this.scene.start("victory-screen");
     }
     if (this.heroMort === true) {
       this.scene.start("defeat-screen");
-    }
+    }*/
   }
 }

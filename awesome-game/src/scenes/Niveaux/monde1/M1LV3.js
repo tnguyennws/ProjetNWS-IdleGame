@@ -84,8 +84,7 @@ export default class lv3 extends Phaser.Scene {
       this.endDuel = false;
 
       while (this.endDuel == false) {
-        //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
-        var image = this.add.image(100, 100, "hero");
+
 
         var tween = this.tweens.add({
           targets: image,

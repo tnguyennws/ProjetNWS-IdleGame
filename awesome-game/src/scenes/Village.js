@@ -106,8 +106,16 @@ export default class Village extends Phaser.Scene {
     var pnj1 = this.add.image(150, 200, "pnj").setScale(1);
 
     var pnj2 = this.add.image(630, 200, "pnj").setScale(1);
-
+    
+    
     var pnj3 = this.add.image(400, 200, "pnj").setScale(1);
+
+    
+    this.labelOr = this.add.text(20, 20, "Or: ", {font: "30px Arial", fill: "#ffff"} );
+    this.labelXP = this.add.text(20, 60, "XP: ", {font: "30px Arial", fill: "#ffff"} );
+    this.labelLV = this.add.text(20, 100, "LV: ", {font: "30px Arial", fill: "#ffff"} );
+  
+
 
     pnj1.setInteractive();
     pnj2.setInteractive();
@@ -176,6 +184,10 @@ export default class Village extends Phaser.Scene {
   }
 
   update(t, dt) {
+    this.labelOr.text = "Or :" + this.or;// affichage de l'or
+    this.labelXP.text = "XP :" + this.exp;// affichage de l'xp
+    this.labelLV.text = "LV :" + this.niveau;// affichage du niveau
+   
     // left and right input logic
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-200);
@@ -189,6 +201,10 @@ export default class Village extends Phaser.Scene {
       // stop movement if not left or right
       this.player.setVelocityX(0);
       this.player.setVelocityY(0);
+
     }
+
+   
+    
   }
 }

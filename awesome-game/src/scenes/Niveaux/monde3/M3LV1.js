@@ -83,8 +83,7 @@ export default class m3lv1 extends Phaser.Scene {
       this.endDuel = false;
 
       while (this.endDuel == false && this.heroMort === false) {
-        //Le héros attaque        var marker = this.add.image(100, 100, 'hero').setAlpha(0.3);
-        var image = this.add.image(100, 100, "hero");
+
 
         //Le héros attaque
         this.monsters[this.nbMob].mobHP -=
@@ -126,11 +125,5 @@ export default class m3lv1 extends Phaser.Scene {
       }
     }
 
-    if (this.nbDuel === 0) {
-      this.scene.start("victory-screen");
-    }
-    if (this.heroMort === true) {
-      this.scene.start("defeat-screen");
-    }
   }
 }
