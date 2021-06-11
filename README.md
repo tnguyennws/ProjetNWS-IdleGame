@@ -14,4 +14,4 @@
 
 
 
-##### Ce jeu a était crée par ## Timothée Nguyen et ## Guénolé LE GRAND.
+##### Ce jeu a était crée par Timothée Nguyen : github [github](https://github.com/tnguyennws) ! et Guénolé LE GRAND : github [github](https://github.com/Guenole76).
