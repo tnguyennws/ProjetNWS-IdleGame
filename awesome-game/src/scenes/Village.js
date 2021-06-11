@@ -11,54 +11,51 @@ export default class Village extends Phaser.Scene {
     super("village");
   }
 
-    // --------------- GESTION DES DONNEES --------------------
-    //Fonction de sauvegarde dans le local storage
-    saveFile(){
-      var file = {
-        vie: this.vie,
-        atk: this.atk,
-        def: this.def,
-        niveau: this.niveau,
-        or: this.or,
-        exp: this.exp,
-        arme: this.arme,
-        armure: this.armure,
-        win: this.win
-      };
-      console.log("Fichier enregistré");
-      localStorage.setItem('saveFile',JSON.stringify(file));
-  };
+  // --------------- GESTION DES DONNEES --------------------
+  //Fonction de sauvegarde dans le local storage
+  saveFile() {
+    var file = {
+      vie: this.vie,
+      atk: this.atk,
+      def: this.def,
+      niveau: this.niveau,
+      or: this.or,
+      exp: this.exp,
+      arme: this.arme,
+      armure: this.armure,
+      win: this.win,
+    };
+    console.log("Fichier enregistré");
+    localStorage.setItem("saveFile", JSON.stringify(file));
+  }
 
   //Fonction de chargement depuis le local storage
-  loadFile(){
-      var file = JSON.parse(localStorage.getItem('saveFile'));
-      this.vie = file.vie;
-      this.atk = file.atk;
-      this.def = file.def;
-      this.niveau = file.niveau;
-      this.or = file.or;
-      this.exp = file.exp;
-      this.arme = file.arme;
-      this.armure = file.armure;
-      this.win = file.win
-  };
+  loadFile() {
+    var file = JSON.parse(localStorage.getItem("saveFile"));
+    this.vie = file.vie;
+    this.atk = file.atk;
+    this.def = file.def;
+    this.niveau = file.niveau;
+    this.or = file.or;
+    this.exp = file.exp;
+    this.arme = file.arme;
+    this.armure = file.armure;
+    this.win = file.win;
+  }
 
   //----------------- INIT ----------------
-  init()
-  {
-
-    if(localStorage.getItem('exp') > 0){
-      this.vie = localStorage.getItem('vie');
-      this.atk = localStorage.getItem('atk');
-      this.def = localStorage.getItem('def');
-      this.niveau = localStorage.getItem('niveau');
-      this.or = localStorage.getItem('or');
-      this.exp = localStorage.getItem('exp');
-      this.arme = localStorage.getItem('arme');
-      this.armure = localStorage.getItem('armure');
-      this.win = localStorage.getItem('win');
-    }
-    else{
+  init() {
+    if (localStorage.getItem("exp") > 0) {
+      this.vie = localStorage.getItem("vie");
+      this.atk = localStorage.getItem("atk");
+      this.def = localStorage.getItem("def");
+      this.niveau = localStorage.getItem("niveau");
+      this.or = localStorage.getItem("or");
+      this.exp = localStorage.getItem("exp");
+      this.arme = localStorage.getItem("arme");
+      this.armure = localStorage.getItem("armure");
+      this.win = localStorage.getItem("win");
+    } else {
       this.vie = 100;
       this.atk = 10;
       this.def = 3;
@@ -69,15 +66,15 @@ export default class Village extends Phaser.Scene {
       this.armure = 0;
       this.win = 0;
 
-      localStorage.setItem('vie', this.vie);
-      localStorage.setItem('atk', this.atk);
-      localStorage.setItem('def', this.def);
-      localStorage.setItem('niveau', this.niveau);
-      localStorage.setItem('or', this.or);
-      localStorage.setItem('exp', this.exp);
-      localStorage.setItem('arme', this.arme);
-      localStorage.setItem('armure', this.armure);
-      localStorage.setItem('win', this.win);
+      localStorage.setItem("vie", this.vie);
+      localStorage.setItem("atk", this.atk);
+      localStorage.setItem("def", this.def);
+      localStorage.setItem("niveau", this.niveau);
+      localStorage.setItem("or", this.or);
+      localStorage.setItem("exp", this.exp);
+      localStorage.setItem("arme", this.arme);
+      localStorage.setItem("armure", this.armure);
+      localStorage.setItem("win", this.win);
     }
   }
 
@@ -104,18 +101,21 @@ export default class Village extends Phaser.Scene {
       .setScale(3);
 
     var pnj1 = this.add.image(150, 200, "pnj").setScale(1);
-
     var pnj2 = this.add.image(630, 200, "pnj").setScale(1);
-    
-    
     var pnj3 = this.add.image(400, 200, "pnj").setScale(1);
 
-    
-    this.labelOr = this.add.text(20, 20, "Or: ", {font: "30px Arial", fill: "#ffff"} );
-    this.labelXP = this.add.text(20, 60, "XP: ", {font: "30px Arial", fill: "#ffff"} );
-    this.labelLV = this.add.text(20, 100, "LV: ", {font: "30px Arial", fill: "#ffff"} );
-  
-
+    this.labelOr = this.add.text(20, 20, "Or: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
+    this.labelXP = this.add.text(20, 60, "XP: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
+    this.labelLV = this.add.text(20, 100, "LV: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
 
     pnj1.setInteractive();
     pnj2.setInteractive();
@@ -126,14 +126,13 @@ export default class Village extends Phaser.Scene {
 
     sauvegarde.setInteractive();
     sauvegarde.on(
-        "pointerdown",
-        function(){
-            if (window.confirm("Voulez vous sauvegarder ?")) {
-                this.saveFile();
-            }
-            
-        },
-        this
+      "pointerdown",
+      function() {
+        if (window.confirm("Voulez vous sauvegarder ?")) {
+          this.saveFile();
+        }
+      },
+      this
     );
 
     //Bouton chargement
@@ -141,20 +140,19 @@ export default class Village extends Phaser.Scene {
 
     telecharger.setInteractive();
     telecharger.on(
-        "pointerdown",
-        function(){                
-            if (window.confirm("Voulez vous charger la sauvegarde ?")) {
-                this.loadFile();
-            }
-            
-        },
-        this
+      "pointerdown",
+      function() {
+        if (window.confirm("Voulez vous charger la sauvegarde ?")) {
+          this.loadFile();
+        }
+      },
+      this
     );
 
     pnj1.on(
       "pointerdown",
       function() {
-        this.scene.start("M1LV3");
+        this.scene.start("forge");
       },
       this
     );
@@ -175,7 +173,6 @@ export default class Village extends Phaser.Scene {
       this
     );
 
-
     this.player = this.physics.add.sprite(240, 320, "player").setScale(1.5);
     this.player.setCollideWorldBounds(true);
 
@@ -184,10 +181,10 @@ export default class Village extends Phaser.Scene {
   }
 
   update(t, dt) {
-    this.labelOr.text = "Or :" + this.or;// affichage de l'or
-    this.labelXP.text = "XP :" + this.exp;// affichage de l'xp
-    this.labelLV.text = "LV :" + this.niveau;// affichage du niveau
-   
+    this.labelOr.text = "Or :" + this.or; // affichage de l'or
+    this.labelXP.text = "XP :" + this.exp; // affichage de l'xp
+    this.labelLV.text = "LV :" + this.niveau; // affichage du niveau
+
     // left and right input logic
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-200);
@@ -201,10 +198,6 @@ export default class Village extends Phaser.Scene {
       // stop movement if not left or right
       this.player.setVelocityX(0);
       this.player.setVelocityY(0);
-
     }
-
-   
-    
   }
 }
