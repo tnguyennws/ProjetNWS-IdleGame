@@ -85,32 +85,6 @@ export default class lv1 extends Phaser.Scene {
 
       while (this.endDuel == false) {
 
-
-        var tween = this.tweens.add({
-          targets: image,
-          x: 600,
-          ease: "Power1",
-          duration: 3000,
-          yoyo: true,
-          repeat: 0,
-          onStart: function() {
-            console.log("onStart");
-            console.log(arguments);
-          },
-          onComplete: function() {
-            console.log("onComplete");
-            console.log(arguments);
-          },
-          onYoyo: function() {
-            console.log("onYoyo");
-            console.log(arguments);
-          },
-          onRepeat: function() {
-            console.log("onRepeat");
-            console.log(arguments);
-          },
-        });
-
         //Le héros attaque
         this.monsters[this.nbMob].mobHP -=
           this.hero[0].heroATK - this.monsters[this.nbMob].mobDEF;
