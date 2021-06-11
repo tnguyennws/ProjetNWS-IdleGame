@@ -23,8 +23,8 @@ export default class MainScreen extends Phaser.Scene {
       this.niveau = 1;
       this.or = 0;
       this.exp = 0;
-      this.arme = 0;
-      this.armure = 0;
+      this.arme = 1;
+      this.armure = 1;
       this.win = 0;
 
       localStorage.setItem("vie", this.vie);
@@ -52,6 +52,27 @@ export default class MainScreen extends Phaser.Scene {
   create() {
     this.add.image(500, 200, "forge").setScrollFactor(1, 0);
 
+    this.labelOr = this.add.text(20, 20, "Or: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
+    this.labelXP = this.add.text(20, 60, "XP: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
+    this.labelLV = this.add.text(20, 100, "LV: ", {
+      font: "30px Arial",
+      fill: "#ffff",
+    });
+    this.labelArme = this.add.text(20, 100, "Arme niv.: ", {
+        font: "30px Arial",
+        fill: "#ffff",
+    });
+    this.labelArmure = this.add.text(20, 100, "Armure niv.: ", {
+        font: "30px Arial",
+        fill: "#ffff",
+    });
+
     var niveau = this.add.image(250, 200, "acheter_niveau").setScale(0.3);
     var arme = this.add.image(650, 200, "ameliorer_arme").setScale(0.3);
     var armure = this.add.image(1050, 200, "ameliorer_armure").setScale(0.3);
@@ -63,17 +84,17 @@ export default class MainScreen extends Phaser.Scene {
     niveau.on(
       "pointerdown",
       function() {
-        if(this.exp > this.niveau*150){
-            this.niveau++;
-            this.vie +=10;
-            this.atk += 2;
-            this.def++;
-            localStorage.setItem('niveau', this.niveau);
-            localStorage.setItem('vie', this.vie);
-            localStorage.setItem('atk', this.atk);
-            localStorage.setItem('def', this.def);
-        }else{
-            window.confirm("Vous n'avez pas assez d'expérience")
+        if (this.exp > this.niveau * 150) {
+          this.niveau++;
+          this.vie += 10;
+          this.atk += 2;
+          this.def++;
+          localStorage.setItem("niveau", this.niveau);
+          localStorage.setItem("vie", this.vie);
+          localStorage.setItem("atk", this.atk);
+          localStorage.setItem("def", this.def);
+        } else {
+          window.confirm("Vous n'avez pas assez d'expérience");
         }
       },
       this
@@ -82,7 +103,17 @@ export default class MainScreen extends Phaser.Scene {
     arme.on(
       "pointerdown",
       function() {
-        this.scene.start("forge");
+        var cout_arme = this.arme * 15;
+        if (this.or > cout_arme) {
+          this.or = this.or - cout_arme;
+          this.arme++;
+          this.atk += 2;
+          localStorage.setItem("or", this.or);
+          localStorage.setItem("atk", this.atk);
+          localStorage.setItem("arme", this.arme);
+        } else {
+          window.confirm("Vous n'avez pas assez d'or");
+        }
       },
       this
     );
@@ -90,7 +121,7 @@ export default class MainScreen extends Phaser.Scene {
     armure.on(
       "pointerdown",
       function() {
-        this.scene.start("forge");
+        window.confirm("Feature en attente");
       },
       this
     );
@@ -107,6 +138,12 @@ export default class MainScreen extends Phaser.Scene {
   }
 
   update(t, dt) {
+    this.labelOr.text = "Or :" + this.or; // affichage de l'or
+    this.labelXP.text = "XP :" + this.exp; // affichage de l'xp
+    this.labelLV.text = "LV :" + this.niveau; // affichage du niveau
+    this.labelArme.text = "Arme niv.:" + this.arme; // affichage du niveau d'arme
+    this.labelArmure.text = "Armure lv.:" + this.armure; // affichage du niveau d'armure
+
     // left and right input logic
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-200);

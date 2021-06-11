@@ -62,8 +62,8 @@ export default class Village extends Phaser.Scene {
       this.niveau = 1;
       this.or = 0;
       this.exp = 0;
-      this.arme = 0;
-      this.armure = 0;
+      this.arme = 1;
+      this.armure = 1;
       this.win = 0;
 
       localStorage.setItem("vie", this.vie);
